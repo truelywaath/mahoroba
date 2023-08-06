@@ -1,22 +1,45 @@
 # 開発環境
-- Anaconda
-- python 3.10.4
+- python
+  - v3.10.4
+  - ライブラリはrequirements.txt参照
+- react
+  - v18.2.0
 
-## セットアップ方法
-1. Anaconda navigatorからpython3.10.4で新規環境作成
-2. 新規作成した環境で```pip install -r requirements.txt```
+# アプリの起動
+- **動作確認する場合はここだけ読めばOK**
+- **アプリを最新状態にするには```git pull```をしてください。**
+## 環境構築
+1. gitの準備(導入済みの場合はスキップ)
+以下のURLからgitをインストール
+https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB
+2. リポジトリの準備
+   1. 任意の場所の作業用ディレクトリに移動
+   2. 以下のコマンドでリポジトリのクローンを作成
+   	```$ git clone https://github.com/truelywaath/mahoroba.git```
+3. Anaconda(python環境)の準備
+   1. 以下のURLからAnacondaをインストール(導入済みの場合はスキップ)
+   https://www.anaconda.com/download
+   2. Anaconda-Navigatorを起動し、Environmentsタブへ移動
+   3. Createから新規環境を作成
+	Name: mahoroba
+	packages: python 3.10.11
+   4. 作成したmahoroba環境を選択し、Open Terminal
+   5. 作業用ディレクトリ配下のmahorobaディレクトリへ移動
+	```$ cd /path/to/作業用ディレクトリ/mahoroba```
+   6. pythonライブラリをインストール
+	```$ pip install -r requirements.txt```
+4. React環境の準備
+    1. 以下のURLからnvmをインストール
+    https://github.com/coreybutler/nvm-windows/releases
+    2. LTSをインストール
+	```$ nvm install 18.17.0```
+## アプリの起動
+1. 起動プロセスをまとめたシェルスクリプトを実行する。
+	```$ ./start.sh```
 
-## アプリの起動方法
-1. DBの初期化
-	```python init_db.py```
-2. アプリの起動
-	```python app.py```
-
-# 開発に参加する方法
-## 事前準備
-1. githubのmahorobaリポジトリからcode>httpsのリンクをコピー
-2. ターミナルから作業用ディレクトリへ移動し 
-	```git clone https://github.com/truelywaath/mahoroba.git```
+# 開発方法
+- **開発に参加する場合は必読**
+- **アプリ起動までの手順は実行済みのもとのする**
 
 ## コーディング・コミット・プルリクエスト
 ### 注意事項
