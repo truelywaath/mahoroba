@@ -34,8 +34,18 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
     2. LTSをインストール
 	```$ nvm install 18.17.0```
 ## アプリの起動
-1. 起動プロセスをまとめたシェルスクリプトを実行する。  
-	```$ ./start.sh```
+1. Flaskのサーバーをたてる。
+	```$ python ./backend/main.py```
+2. Reactのサーバーをたてる。
+	```$ cd ./frontend```
+	```$ npm start```
+> note
+> 'react-scripts' は、内部コマンドまたは外部コマンド、
+> 操作可能なプログラムまたはバッチ ファイルとして認識されていません。
+> ↑が表示された場合は以下コマンドを実行。
+> ```$ npm install```
+> ```$ npm start```
+> 
 
 # 開発方法
 - **開発に参加する場合は必読**
