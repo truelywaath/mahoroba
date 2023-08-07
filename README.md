@@ -9,7 +9,7 @@
 - **動作確認する場合はここだけ読めばOK**
 - **アプリを最新状態にするには```git pull```をしてください。**
 ## 環境構築
-1. gitの準備(導入済みの場合はスキップ)
+1. gitの準備(導入済みの場合はスキップ)  
 以下のURLからgitをインストール  
 https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB
 2. リポジトリの準備
@@ -31,20 +31,20 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
 4. React環境の準備
     1. 以下のURLからnvmをインストール  
     https://github.com/coreybutler/nvm-windows/releases
-    2. LTSをインストール
+    2. LTSをインストール  
 	```$ nvm install 18.17.0```
 ## アプリの起動
-1. Flaskのサーバーをたてる。
+1. Flaskのサーバーをたてる。  
 	```$ python ./backend/main.py```
-2. Reactのサーバーをたてる。
+2. Reactのサーバーをたてる。  
 	```$ cd ./frontend```
 	```$ npm start```
-> note
-> 'react-scripts' は、内部コマンドまたは外部コマンド、
-> 操作可能なプログラムまたはバッチ ファイルとして認識されていません。
-> ↑が表示された場合は以下コマンドを実行。
-> ```$ npm install```
-> ```$ npm start```
+> note  
+> 'react-scripts' は、内部コマンドまたは外部コマンド、  
+> 操作可能なプログラムまたはバッチ ファイルとして認識されていません。  
+> ↑が表示された場合は以下コマンドを実行。  
+> ```$ npm install```  
+> ```$ npm start```  
 > 
 
 # 開発方法
@@ -57,11 +57,11 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
 - **1機能、1修正ごとにブランチを切ること**
 - **(念の為)毎回ブランチを切る前に```git pull```すること**。
 ### 手順
-1. ```git branch```コマンドでmasterブランチにいることを確認し、```git pull```
-	- masterブランチにいなかった場合は```git checkout master```でmasterブランチへ移動
-2. ```git checkout -b ブランチ名```で新規ブランチを作成し、移動
-	- ブランチの命名は新規機能追加の場合```feature/XXX```、修正の場合は```fix/XXX```のようにつけると良い。
-3. プログラムの実装をする。
+1. ```git branch```コマンドでmasterブランチにいることを確認し、```git pull```  
+	- masterブランチにいなかった場合は```git checkout master```でmasterブランチへ移動  
+2. ```git checkout -b ブランチ名```で新規ブランチを作成し、移動  
+	- ブランチの命名は新規機能追加の場合```feature/XXX```、修正の場合は```fix/XXX```のようにつけると良い。  
+3. プログラムの実装をする。  
 4. ```git add .```でブランチに修正したファイルを追加する。
 5. ```git commit -m "コミットメッセージ"```でコミットする。   
 	- コミットメッセージにはそのコミットでの変更内容を簡単に記載する。
