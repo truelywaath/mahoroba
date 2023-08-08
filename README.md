@@ -35,7 +35,7 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
 	```$ nvm install 18.17.0```
 ## アプリの起動
 1. Flaskのサーバーをたてる。  
-	```$ python ./backend/main.py```
+	```$ python ./backend/app.py```
 2. Reactのサーバーをたてる。  
 	```$ cd ./frontend```
 	```$ npm start```
