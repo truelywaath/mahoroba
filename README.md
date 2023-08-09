@@ -38,7 +38,7 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
 1. Flaskのサーバーをたてる。  
 	```$ python ./backend/app.py```
 2. Reactのサーバーをたてる。  
-	```$ cd ./frontend```
+	```$ cd ./frontend```  
 	```$ npm start```
 > note  
 > 'react-scripts' は、内部コマンドまたは外部コマンド、  
