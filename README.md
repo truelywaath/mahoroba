@@ -58,7 +58,7 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
 - **1機能、1修正ごとにブランチを切ること**
 - **(念の為)毎回ブランチを切る前に```git pull```すること**。
 ### 手順
-1. ```git branch```コマンドでmasterブランチにいることを確認し、```git pull```  
+1. ```git branch```コマンドでmasterブランチにいることを確認し、```git pull origin master```  
 	- masterブランチにいなかった場合は```git checkout master```でmasterブランチへ移動  
 2. ```git checkout -b ブランチ名```で新規ブランチを作成し、移動  
 	- ブランチの命名は新規機能追加の場合```feature/XXX```、修正の場合は```fix/XXX```のようにつけると良い。  
@@ -66,6 +66,6 @@ https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git
 4. ```git add .```でブランチに修正したファイルを追加する。
 5. ```git commit -m "コミットメッセージ"```でコミットする。   
 	- コミットメッセージにはそのコミットでの変更内容を簡単に記載する。
-6. ```git push ブランチ名```でpushする。
+6. ```git push origin ブランチ名```でpushする。
 7. githubを開き```create new pull request```をクリック。
 8. 変更箇所・変更内容を文章で記入し、masterブランチとの差分を見てプログラムに間違いがないことを確認した後、プルリクエストを送る。
