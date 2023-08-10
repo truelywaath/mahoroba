@@ -15,13 +15,6 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <div className="border border-gray-400 rounded-2xl p-2 m-2 flex justify-around items-center">
-        <h1 className="text-3xl font-bold underline">
-          Hello Mahoroba!
-        </h1>
-        <p className="m-0 text-gray-400">mahoroba</p>
-        <button className="bg-gray-300 border-0 p-2 rounded-md hover:bg-gray-400 hover:text-white">ボタン</button>
-      </div>
         <header className="App-header">
           <h1>text * 2</h1>
           <form onSubmit={this.handleSubmit}>
