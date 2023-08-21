@@ -7,8 +7,6 @@ export function Header() {
       <h1 className="text-3xl font-bold underline">
         Hello Mahoroba!
       </h1>
-      <p className="m-0 text-gray-400">mahoroba</p>
-      	<button className="bg-gray-300 border-0 p-2 rounded-md hover:bg-gray-400 hover:text-white">ボタン</button>
       </div>
 	)
 }
