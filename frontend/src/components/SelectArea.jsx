@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import './../App.css';
 
 export function SelectArea() {
-  const areas = [
-    '浅草・上野', 
-    '丸の内・銀座・秋葉原', 
-    'お台場・品川・羽田空港', 
-    '六本木・渋谷', 
-    '新宿・池袋',
-    '吉祥寺・調布・高尾',
-    '八丈島・小笠原諸島'
-  ];
+  const [areas, setAreas] = useState([]);
+  useEffect(() => {
+    Axios.post('http://127.0.0.1:5000/area_options').then((res) => {
+      console.log(res.data);
+      const values = Object.values(res.data);
+      setAreas(values);
+    });
+  }, []);
 
+  console.log('test')
   return(
     <>
     <div className="text-center">

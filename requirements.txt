@@ -4,6 +4,7 @@ flask_sqlalchemy==2.5.1
 flask_migrate==3.1.0
 flask_login==0.5.0
 flask-cors==4.0.0
+pandas==2.0.2
 pytz==2021.3
 pillow==9.0.1
 werkzeug==2.0.3
