@@ -15,6 +15,28 @@ class Area(db.Model):
 
 
 
+
+# スポット詳細テーブル
+class SpotDetail(db.Model):
+    __tablename__ = 'spot_detail'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    spot_id = db.Column(db.Integer)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    description = db.Column(db.String(256))
+
+
+    def __init__(self, spot_id, latitude, longitude, description):
+        self.spot_id = spot_id
+        self.latitude = latitude
+        self.longitude = longitude
+        self.description = description
+
+
+
+
+
 # 関連スポットテーブル
 class RelatedSpot(db.Model):
     __tablename__ = 'related_spot'

@@ -1,5 +1,5 @@
 import pandas as pd
-from main.models import Area, RelatedSpot
+from main.models import Area, RelatedSpot, SpotDetail
 from main import db
 
 db.drop_all()
@@ -19,6 +19,29 @@ for index, row in df.iterrows():
         area = row['エリア']
     )
     db.session.add(area_record)
+
+
+
+
+
+# スポット詳細テーブルを初期化
+spot_detail_dtypes = {
+    'スポットID': int,
+    '緯度': float,
+    '経度': float,
+    '説明文': str
+}
+
+df = pd.read_csv("./csv/spot_detail.csv", dtype=spot_detail_dtypes)
+for index, row in df.iterrows():
+    spot_detail_record = SpotDetail(
+        spot_id = row['スポットID'],
+        latitude = row['緯度'],
+        longitude = row['経度'],
+        description = row['説明文']
+    )
+    db.session.add(spot_detail_record)
+
 
 
 
