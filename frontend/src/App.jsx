@@ -7,7 +7,7 @@ function App() {
   return(
     <>
     <div className="w-screen flex justify-center items-center">
-      <div className=" w-96">
+      <div className="w-5/6 sm:w-96">
         <Header />
         <Router />
       </div>
