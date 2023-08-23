@@ -13,7 +13,6 @@ export function SelectArea() {
     });
   }, []);
 
-  console.log('test')
   return(
     <>
       <div className="px-8">
@@ -26,9 +25,11 @@ export function SelectArea() {
               return (
                 <div className="list-row">
                   <li className="my-4">
-                    <button className="w-2/3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                      {area}
-                    </button>
+                    <Link to="/spot" state={{ area_id: area.id }}>
+                      <button className="w-2/3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" component={Link} to="/">
+                        { area.division }
+                      </button>
+                    </Link>
                   </li>
                 </div>
               )
