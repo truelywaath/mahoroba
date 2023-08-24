@@ -1,12 +1,11 @@
 import pandas as pd
-from main.models import Area, RelatedSpot, SpotDetail
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail
 from main import db
 
 db.drop_all()
 db.create_all()
 
-
-# エリア区分テーブルを初期化
+# エリア
 area_dtypes = {
     'エリア区分': str,
     'エリア': str,
@@ -20,11 +19,41 @@ for index, row in df.iterrows():
     )
     db.session.add(area_record)
 
+# エリア区分
+division_dtypes = {
+    'エリア区分': str
+}
+
+df = pd.read_csv("./csv/division.csv", dtype=division_dtypes)
+for index, row in df.iterrows():
+    division_record = Division(
+        division = row['エリア区分'],
+    )
+    db.session.add(division_record)
+
+# スポット
+spot_dtypes = {
+    'スポット': str,
+    'エリア区分id': int,
+    '目的': str,
+    'ジャンル': str,
+    '画像パス': str
+}
+
+df = pd.read_csv("./csv/spot.csv", dtype=spot_dtypes)
+for index, row in df.iterrows():
+    spot_record = Spot(
+        spot = row['スポット'],
+        division_id = row['エリア区分id'],
+        purpose = row['目的'],
+        genre = row['ジャンル'],
+        path = row['画像パス']
+    )
+    db.session.add(spot_record)
 
 
 
-
-# スポット詳細テーブルを初期化
+# スポット詳細
 spot_detail_dtypes = {
     'スポットID': int,
     '緯度': float,
@@ -45,9 +74,7 @@ for index, row in df.iterrows():
 
 
 
-
-
-# 関連スポットテーブルを初期化
+# 関連スポット
 related_spot_dtypes = {
     'スポットID': int,
     '関連スポットID': int,
@@ -64,7 +91,6 @@ for index, row in df.iterrows():
         related_image_path = row['関連スポット画像パス']
     )
     db.session.add(related_spot_record)
-
 
 
 db.session.commit()
