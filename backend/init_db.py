@@ -1,5 +1,5 @@
 import pandas as pd
-from main.models import Area, Division, Spot
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail
 from main import db
 
 db.drop_all()
@@ -50,5 +50,47 @@ for index, row in df.iterrows():
         path = row['画像パス']
     )
     db.session.add(spot_record)
+
+
+
+# スポット詳細
+spot_detail_dtypes = {
+    'スポットID': int,
+    '緯度': float,
+    '経度': float,
+    '説明文': str
+}
+
+df = pd.read_csv("./csv/spot_detail.csv", dtype=spot_detail_dtypes)
+for index, row in df.iterrows():
+    spot_detail_record = SpotDetail(
+        spot_id = row['スポットID'],
+        latitude = row['緯度'],
+        longitude = row['経度'],
+        description = row['説明文']
+    )
+    db.session.add(spot_detail_record)
+
+
+
+
+# 関連スポット
+related_spot_dtypes = {
+    'スポットID': int,
+    '関連スポットID': int,
+    '関連スポット名称': str,
+    '関連スポット画像パス': str
+}
+
+df = pd.read_csv("./csv/related_spot.csv", dtype=related_spot_dtypes)
+for index, row in df.iterrows():
+    related_spot_record = RelatedSpot(
+        spot_id = row['スポットID'],
+        related_spot_id = row['関連スポットID'],
+        related_spot_name = row['関連スポット名称'],
+        related_image_path = row['関連スポット画像パス']
+    )
+    db.session.add(related_spot_record)
+
 
 db.session.commit()
