@@ -15,3 +15,12 @@ def doublify():
 
     response = {'result': res}
     return make_response(jsonify(response))
+
+@views.route("/triplify", methods=['GET','POST'])
+def triprify():
+    data = request.get_json()
+    text = data['post_text']
+    res = text + text + text
+
+    response = {'result': res}
+    return make_response(jsonify(response))
