@@ -1,5 +1,5 @@
 import pandas as pd
-from main.models import Area, Division, Spot, RelatedSpot, SpotDetail
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose
 from main import db
 
 db.drop_all()
@@ -51,8 +51,6 @@ for index, row in df.iterrows():
     )
     db.session.add(spot_record)
 
-
-
 # スポット詳細
 spot_detail_dtypes = {
     'スポットID': int,
@@ -70,9 +68,6 @@ for index, row in df.iterrows():
         description = row['説明文']
     )
     db.session.add(spot_detail_record)
-
-
-
 
 # 関連スポット
 related_spot_dtypes = {
@@ -92,5 +87,16 @@ for index, row in df.iterrows():
     )
     db.session.add(related_spot_record)
 
+# 目的
+purpose_dtypes = {
+    '目的': str
+}
+
+df = pd.read_csv("./csv/purpose.csv", dtype=purpose_dtypes)
+for index, row in df.iterrows():
+    purpose_record = Purpose(
+        purpose = row['目的']
+    )
+    db.session.add(purpose_record)
 
 db.session.commit()

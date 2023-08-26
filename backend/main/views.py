@@ -31,8 +31,13 @@ def get_spot_options():
     data = request.get_json()
     division_id = data['division_id']
 
-    spots = Spot.query.filter(Spot.division_id==division_id).all()
     res = []
+    if division_id == -1:
+        spots = Spot.query.all()
+    else:
+        spots = Spot.query.filter(Spot.division_id==division_id).all()
+
+
     for spot in spots:
         res.append(
             {

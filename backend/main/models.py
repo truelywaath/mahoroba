@@ -80,3 +80,12 @@ class RelatedSpot(db.Model):
         self.related_spot_name = related_spot_name
         self.related_image_path = related_image_path
 
+# 目的テーブル
+class Purpose(db.Model):
+    __tablename__ = 'purpose'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    purpose = db.Column(db.String(64))
+
+    def __init__(self, purpose):
+        self.purpose = purpose
