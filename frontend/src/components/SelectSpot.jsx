@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import Select from 'react-select'
 import { Link, useLocation } from 'react-router-dom';
 import './../App.css';
 
@@ -8,6 +9,11 @@ export function SelectSpot() {
   const { area_id } = location.state;
 
   const [spots, setSpots] = useState([]);
+  const [purposes, setPurposes] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [selectedPurpose, setSelectedPurpose] = useState('a');
+  const [selectedGenre, setSelectetGenre] = useState();
+
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/spot_options', {
       division_id: area_id
@@ -18,17 +24,49 @@ export function SelectSpot() {
     });
   }, []);
 
+  useEffect(() => {
+    Axios.post('http://127.0.0.1:5000/purpose_options').then((res) => {
+      const values = Object.values(res.data);
+      const newValues = [{value: 0, label: "おまかせ"}, ...values];
+      console.log(newValues);
+      setPurposes(newValues);
+    });
+  }, []);
+
+  useEffect(() => {
+    Axios.post('http://127.0.0.1:5000/genre_options').then((res) => {
+      console.log(res.data);
+      const values = Object.values(res.data);
+      setGenres(values);
+    });
+  }, []);
+
 
 	return(
 		<>
+      <div>
+        mokuteki: 
+        <Select 
+          options={purposes} 
+          selectedValue={selectedPurpose}
+          onChange={(value) => {
+            setSelectedPurpose(value);
+            console.log(selectedPurpose)
+          }}
+        />
+      </div>
+      <div>
+        genre: 
+        <Select options={genres} />
+      </div>
       <div className="px-8">
         <div className="text-center">
           {spots.map((spot) => {
             return(
-              <div class="max-w-sm rounded overflow-hidden shadow-lg mt-2 mx-2">
-                <img class="w-full" src={spot.path} alt={spot.spot}/>
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">{spot.spot}</div>
+              <div className="max-w-sm rounded overflow-hidden shadow-lg mt-2 mx-2">
+                <img className="w-full" src={spot.path} alt={spot.spot}/>
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">{spot.spot}</div>
                 </div>
               </div>
             )

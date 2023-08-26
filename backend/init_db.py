@@ -1,5 +1,5 @@
 import pandas as pd
-from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose, Genre
 from main import db
 
 db.drop_all()
@@ -98,5 +98,17 @@ for index, row in df.iterrows():
         purpose = row['目的']
     )
     db.session.add(purpose_record)
+
+# ジャンル
+genre_dtypes = {
+    'ジャンル': str
+}
+
+df = pd.read_csv("./csv/genre.csv", dtype=genre_dtypes)
+for index, row in df.iterrows():
+    genre_record = Genre(
+        genre = row['ジャンル']
+    )
+    db.session.add(genre_record)
 
 db.session.commit()
