@@ -44,7 +44,7 @@ def get_spot_options():
                 "id": spot.id,
                 "spot": spot.spot,
                 "purpose": spot.purpose,
-                "genre": spot.genre,
+                "genre_id": spot.genre_id,
                 "path": spot.path
             }
         )
