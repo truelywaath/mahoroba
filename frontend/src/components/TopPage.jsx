@@ -15,13 +15,8 @@ export function TopPage() {
       <br></br>
       <ul>
         <li className="my-6">
-          <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" to="/area">
+          <Link className="bg-rose-200 hover:bg-rose-300 text-rose-400 font-bold p-6 rounded-full text-5xl" to="/area">
             使ってみる!
-          </Link>
-        </li>
-        <li className="my-6">
-          <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" to="/doublify">
-            Doublify!
           </Link>
         </li>
       </ul>
