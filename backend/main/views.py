@@ -1,5 +1,5 @@
 from flask import request, jsonify, make_response
-from main.models import Division, Spot
+from main.models import Division, Spot, Purpose, Genre
 from main import app, db 
 
 @app.route("/", methods=['GET'])
@@ -48,5 +48,26 @@ def get_spot_options():
                 "path": spot.path
             }
         )
+
+    return make_response(jsonify(res))
+
+@app.route('/purpose_options', methods=['GET', 'POST'])
+def get_purpose_options():
+    purposes = Purpose.query.all()
+
+    res = []
+    for purpose in purposes:
+        res.append({"value": purpose.id, "label": purpose.purpose})
+
+    return make_response(jsonify(res))
+
+
+@app.route('/genre_options', methods=['GET', 'POST'])
+def get_genre_options():
+    genres= Genre.query.all()
+
+    res = []
+    for genre in genres:
+        res.append({"value": genre.id, "label": genre.genre})
 
     return make_response(jsonify(res))

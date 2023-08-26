@@ -13,6 +13,11 @@ export function SelectArea() {
     });
   }, []);
 
+  const options = [
+    { value: 'val1', label: 'lab1' },
+    { value: 'val2', label: 'lab2' },
+  ];
+
   return(
     <>
       <div className="px-8">
@@ -21,10 +26,19 @@ export function SelectArea() {
             エリアは？
           </div>
           <ul>
+            <div className="list-row">
+              <li className="my-4" key="-1">
+                <Link to="/spot" state={{ area_id: -1 }}>
+                  <button className="w-2/3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" component={Link} to="/">
+                   おまかせ
+                  </button>
+                </Link>
+              </li>
+            </div>
             {areas.map((area) => {
               return (
                 <div className="list-row">
-                  <li className="my-4">
+                  <li className="my-4" key={area.id}>
                     <Link to="/spot" state={{ area_id: area.id }}>
                       <button className="w-2/3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" component={Link} to="/">
                         { area.division }
