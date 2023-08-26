@@ -13,23 +13,18 @@ export function SelectArea() {
     });
   }, []);
 
-  const options = [
-    { value: 'val1', label: 'lab1' },
-    { value: 'val2', label: 'lab2' },
-  ];
-
   return(
     <>
+      <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 rounded-bl-full rounded-br-full mb-10">
+        エリアは？
+      </div>
       <div className="px-8">
         <div className="text-center">
-          <div className="bg-blue-300 py-5 border-2 border-blue-500">
-            エリアは？
-          </div>
           <ul>
             <div className="list-row">
               <li className="my-4" key="-1">
                 <Link to="/spot" state={{ area_id: -1 }}>
-                  <button className="w-2/3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" component={Link} to="/">
+                  <button className="w-2/3 text-5xl text-rose-400 bg-rose-200 hover:bg-gray-300 py-4 my-2 px-4 border border-gray-400 rounded shadow rounded-full" component={Link} to="/">
                    おまかせ
                   </button>
                 </Link>
@@ -40,7 +35,7 @@ export function SelectArea() {
                 <div className="list-row">
                   <li className="my-4" key={area.id}>
                     <Link to="/spot" state={{ area_id: area.id }}>
-                      <button className="w-2/3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" component={Link} to="/">
+                      <button className="w-2/3 text-5xl text-rose-400 bg-rose-200 hover:bg-rose-300 py-4 my-2 px-4 border border-gray-400 rounded shadow rounded-full" component={Link} to="/">
                         { area.division }
                       </button>
                     </Link>

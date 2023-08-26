@@ -9,6 +9,7 @@ export function SelectSpot() {
   const { area_id } = location.state;
 
   const [spots, setSpots] = useState([]);
+  const [displayedSpots, setDisplayedSpots] = useState([]);
   const [purposes, setPurposes] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedPurpose, setSelectedPurpose] = useState({label: 'おまかせ', value: 0});
@@ -21,10 +22,31 @@ export function SelectSpot() {
       console.log(res.data);
       const values = Object.values(res.data);
       setSpots(values);
+      setDisplayedSpots(values);
     });
 
+  }, []);
 
-  }, [selectedPurpose, selectedGenre]);
+  useEffect(() => {
+    let newArray = [];
+    if (selectedPurpose.value === 0 && selectedGenre.value === 0) {
+      newArray = spots; 
+    } else if (selectedPurpose.value === 0) {
+      newArray = spots.filter((spot) => {
+        return spot.genre_id === selectedGenre.value;
+      });
+    } else if (selectedGenre.value === 0) {
+      newArray = spots.filter((spot) => {
+        return spot.purpose_ids.includes(selectedPurpose.value);
+      });
+    } else {
+      newArray = spots.filter((spot) => {
+        return spot.purpose_ids.includes(selectedPurpose.value) && spot.genre_id === selectedGenre.value;
+      });   
+    }
+
+    setDisplayedSpots(newArray)
+  }, [selectedPurpose, selectedGenre])
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/purpose_options').then((res) => {
@@ -71,7 +93,7 @@ export function SelectSpot() {
       </div>
       <div className="px-8">
         <div className="text-center">
-          {spots.map((spot) => {
+          {displayedSpots.map((spot) => {
             return(
               <div className="max-w-sm rounded overflow-hidden shadow-lg mt-2 mx-2">
                 <img className="w-full" src={spot.path} alt={spot.spot}/>

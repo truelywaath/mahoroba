@@ -6,10 +6,12 @@ import './App.css';
 function App() {
   return(
     <>
-    <div className="w-screen flex justify-center items-center">
-      <div className="w-5/6 sm:w-96">
-        <Header />
-        <Router />
+    <div className="bg-gray-100">
+      <div className="w-screen flex justify-center items-center">
+        <div className="w-5/6 sm:w-full">
+          <Header />
+          <Router />
+        </div>
       </div>
     </div>
     </>
