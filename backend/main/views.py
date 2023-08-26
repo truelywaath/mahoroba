@@ -23,6 +23,7 @@ def get_area_options():
     res = []
     for division in divisions:
         res.append({"id": division.id, "division": division.division})
+    print("OK!")
 
     return make_response(jsonify(res))
 

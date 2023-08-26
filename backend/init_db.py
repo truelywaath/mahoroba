@@ -1,5 +1,5 @@
 import pandas as pd
-from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose, Genre, RSpotPurpose
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, RSpot_Path, Purpose, Genre, RSpotPurpose
 from main import db
 
 db.drop_all()
@@ -34,8 +34,7 @@ for index, row in df.iterrows():
 # スポット
 spot_dtypes = {
     'スポット': str,
-    'エリア区分id': int,
-    '目的': str,
+    'エリア区分ID': int,
     'ジャンルID': int,
     '画像パス': str
 }
@@ -44,8 +43,7 @@ df = pd.read_csv("./csv/spot.csv", dtype=spot_dtypes)
 for index, row in df.iterrows():
     spot_record = Spot(
         spot = row['スポット'],
-        division_id = row['エリア区分id'],
-        purpose = row['目的'],
+        division_id = row['エリア区分ID'],
         genre_id = row['ジャンルID'],
         path = row['画像パス']
     )
@@ -68,6 +66,23 @@ for index, row in df.iterrows():
         description = row['説明文']
     )
     db.session.add(spot_detail_record)
+
+
+# スポット詳細画像
+rspot_path_dtypes = {
+    'スポットID': int,
+    '画像パス': str
+}
+
+df = pd.read_csv("./csv/rspot_path.csv", dtype=rspot_path_dtypes)
+for index, row in df.iterrows():
+    rspot_path_record = RSpot_Path(
+        spot_id = row['スポットID'],
+        path = row['画像パス']
+    )
+    db.session.add(rspot_path_record)
+
+
 
 # 関連スポット
 related_spot_dtypes = {

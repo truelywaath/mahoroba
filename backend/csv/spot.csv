@@ -1,6 +1,10 @@
-スポット,エリア区分id,目的,ジャンルID,画像パス
-Ferris1,9,kawaii,1,/images/crab/01.png
-Ferris2,9,kawaii,1,/images/crab/02.png
-Ferris3,9,kawaii,1,/images/crab/03.png
-Ferris4,9,kawaii,1,/images/crab/04.png
-Ferris5,9,kawaii,1,/images/crab/05.png
+"スポット",エリア区分ID,"ジャンルID","画像パス"
+"芝公園",4,2,"/images/spot/芝公園_001.jpg"
+"お台場海浜公園",4,2,"/images/spot/お台場_001.jpg"
+"国立新美術館",4,4,"/images/spot/国立新美術館_001.jpg"
+"根津美術館",4,4,"/images/spot/根津美術館_001.jpg"
+"イタリア公園",4,2,"/images/spot/イタリア公園_001.jpg"
+"有栖川宮記念公園",4,2,"/images/spot/有栖川宮記念公園_001.jpg"
+"浜離宮恩賜庭園",4,2,"/images/spot/浜離宮恩賜庭園_001.jpg"
+"旧芝離宮恩賜庭園",4,2,"/images/spot/芝離宮恩賜庭園_001.jpg"
+"乃木神社",4,1,"/images/spot/乃木神社_001.jpg"

@@ -29,14 +29,12 @@ class Spot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     spot = db.Column(db.String(64))
     division_id = db.Column(db.Integer)
-    purpose = db.Column(db.String(64))
     genre_id = db.Column(db.Integer)
     path = db.Column(db.String(64))
 
-    def __init__(self, spot, division_id, purpose, genre_id, path):
+    def __init__(self, spot, division_id, genre_id, path):
         self.spot = spot
         self.division_id = division_id
-        self.purpose = purpose
         self.genre_id = genre_id
         self.path = path
 
@@ -56,6 +54,17 @@ class SpotDetail(db.Model):
         self.latitude = latitude
         self.longitude = longitude
         self.description = description
+
+# スポット詳細画像テーブル
+class RSpot_Path(db.Model):
+    __tablename__ = 'rspot_path'
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    spot_id = db.Column(db.Integer)
+    path = db.Column(db.String(64))
+
+    def __init__(self, spot_id, path):
+        self.spot_id = spot_id
+        self.path = path
 
 # 関連スポットテーブル
 class RelatedSpot(db.Model):
