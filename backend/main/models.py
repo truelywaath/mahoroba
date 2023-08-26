@@ -93,16 +93,6 @@ class Purpose(db.Model):
     def __init__(self, purpose):
         self.purpose = purpose
 
-# ジャンル
-class Genre(db.Model):
-    __tablename__ = 'genre'
-
-    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    genre = db.Column(db.String(64))
-
-    def __init__(self, genre):
-        self.genre = genre
-
 # スポット-目的テーブル
 class RSpotPurpose(db.Model):
     __tablename__ = 'spot_purpose'
@@ -114,3 +104,14 @@ class RSpotPurpose(db.Model):
     def __init__(self, spot_id, purpose_id):
         self.spot_id = spot_id
         self.purpose_id = purpose_id
+
+# ジャンル
+class Genre(db.Model):
+    __tablename__ = 'genre'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    genre = db.Column(db.String(64))
+
+    def __init__(self, genre):
+        self.genre = genre
+

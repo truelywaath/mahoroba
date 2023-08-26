@@ -100,6 +100,7 @@ for index, row in df.iterrows():
         related_spot_name = row['関連スポット名称'],
         related_image_path = row['関連スポット画像パス']
     )
+    print(type(related_spot_record.spot_id))
     db.session.add(related_spot_record)
 
 # 目的
@@ -126,7 +127,7 @@ for index, row in df.iterrows():
     )
     db.session.add(genre_record)
 
-# スポット-目的
+# スポット目的
 spot_purpose_dtypes = {
     'スポットID': int,
     '目的ID': int
@@ -135,9 +136,10 @@ spot_purpose_dtypes = {
 df = pd.read_csv("./csv/spot_purpose.csv", dtype=spot_purpose_dtypes)
 for index, row in df.iterrows():
     spot_purpose_record = RSpotPurpose(
-        spot_id = row['スポットID'],
-        purpose_id = row['目的ID']
+        spot_id = int(row['スポットID']),
+        purpose_id = int(row['目的ID'])
     )
     db.session.add(spot_purpose_record)
+
 
 db.session.commit()
