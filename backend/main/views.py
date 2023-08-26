@@ -1,5 +1,5 @@
 from flask import request, jsonify, make_response
-from main.models import Division, Spot, Purpose, Genre
+from main.models import Division, Spot, Purpose, Genre, RSpotPurpose
 from main import app, db 
 
 @app.route("/", methods=['GET'])
@@ -37,13 +37,23 @@ def get_spot_options():
     else:
         spots = Spot.query.filter(Spot.division_id==division_id).all()
 
+    r_spot_purposes = RSpotPurpose.query.all()
+    mp = {}
+    for r_spot_purpose in r_spot_purposes:
+        if r_spot_purpose.spot_id not in mp:
+            mp[r_spot_purpose.spot_id] = []
+        mp[r_spot_purpose.spot_id].append(r_spot_purpose.purpose_id)
+
 
     for spot in spots:
+        if spot.id not in mp:
+            mp[spot.id] = []
+
         res.append(
             {
                 "id": spot.id,
                 "spot": spot.spot,
-                "purpose": spot.purpose,
+                "purpose_ids": mp[spot.id],
                 "genre_id": spot.genre_id,
                 "path": spot.path
             }
