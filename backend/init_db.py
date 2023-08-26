@@ -1,5 +1,5 @@
 import pandas as pd
-from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose, Genre
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose, Genre, RSpotPurpose
 from main import db
 
 db.drop_all()
@@ -36,7 +36,7 @@ spot_dtypes = {
     'スポット': str,
     'エリア区分id': int,
     '目的': str,
-    'ジャンル': str,
+    'ジャンルID': int,
     '画像パス': str
 }
 
@@ -46,7 +46,7 @@ for index, row in df.iterrows():
         spot = row['スポット'],
         division_id = row['エリア区分id'],
         purpose = row['目的'],
-        genre = row['ジャンル'],
+        genre_id = row['ジャンルID'],
         path = row['画像パス']
     )
     db.session.add(spot_record)
@@ -110,5 +110,19 @@ for index, row in df.iterrows():
         genre = row['ジャンル']
     )
     db.session.add(genre_record)
+
+# スポット-目的
+spot_purpose_dtypes = {
+    'スポットID': int,
+    '目的ID': int
+}
+
+df = pd.read_csv("./csv/spot_purpose.csv", dtype=spot_purpose_dtypes)
+for index, row in df.iterrows():
+    spot_purpose_record = RSpotPurpose(
+        spot_id = row['スポットID'],
+        purpose_id = row['目的ID']
+    )
+    db.session.add(spot_purpose_record)
 
 db.session.commit()

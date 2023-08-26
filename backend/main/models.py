@@ -12,7 +12,6 @@ class Area(db.Model):
         self.division = division
         self.area = area
 
-
 # エリア区分テーブル
 class Division(db.Model):
     __tablename__ = 'division'
@@ -31,16 +30,15 @@ class Spot(db.Model):
     spot = db.Column(db.String(64))
     division_id = db.Column(db.Integer)
     purpose = db.Column(db.String(64))
-    genre = db.Column(db.String(64))
+    genre_id = db.Column(db.Integer)
     path = db.Column(db.String(64))
 
-    def __init__(self, spot, division_id, purpose, genre, path):
+    def __init__(self, spot, division_id, purpose, genre_id, path):
         self.spot = spot
         self.division_id = division_id
         self.purpose = purpose
-        self.genre = genre
+        self.genre_id = genre_id
         self.path = path
-
 
 # スポット詳細テーブル
 class SpotDetail(db.Model):
@@ -58,10 +56,6 @@ class SpotDetail(db.Model):
         self.latitude = latitude
         self.longitude = longitude
         self.description = description
-
-
-
-
 
 # 関連スポットテーブル
 class RelatedSpot(db.Model):
@@ -99,3 +93,15 @@ class Genre(db.Model):
 
     def __init__(self, genre):
         self.genre = genre
+
+# スポット-目的テーブル
+class RSpotPurpose(db.Model):
+    __tablename__ = 'spot_purpose'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    spot_id = db.Column(db.Integer)
+    purpose_id = db.Column(db.Integer)
+
+    def __init__(self, spot_id, purpose_id):
+        self.spot_id = spot_id
+        self.purpose_id = purpose_id
