@@ -11,8 +11,8 @@ export function SelectSpot() {
   const [spots, setSpots] = useState([]);
   const [purposes, setPurposes] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [selectedPurpose, setSelectedPurpose] = useState('a');
-  const [selectedGenre, setSelectedGenre] = useState();
+  const [selectedPurpose, setSelectedPurpose] = useState({label: 'おまかせ', value: 0});
+  const [selectedGenre, setSelectedGenre] = useState({label: 'おまかせ', value: 0});
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/spot_options', {
@@ -22,7 +22,9 @@ export function SelectSpot() {
       const values = Object.values(res.data);
       setSpots(values);
     });
-  }, []);
+
+
+  }, [selectedPurpose, selectedGenre]);
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/purpose_options').then((res) => {
@@ -45,13 +47,15 @@ export function SelectSpot() {
 
 	return(
 		<>
+    {selectedPurpose.label}
+    {selectedGenre.label}
       <div>
         mokuteki: 
         <Select 
           options={purposes} 
           selectedValue={selectedPurpose}
           onChange={(value) => {
-            setSelectedPurpose(value);
+            value && setSelectedPurpose(value);
           }}
         />
       </div>
