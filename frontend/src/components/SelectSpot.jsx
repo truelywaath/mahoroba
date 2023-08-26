@@ -12,7 +12,7 @@ export function SelectSpot() {
   const [purposes, setPurposes] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedPurpose, setSelectedPurpose] = useState('a');
-  const [selectedGenre, setSelectetGenre] = useState();
+  const [selectedGenre, setSelectedGenre] = useState();
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/spot_options', {
@@ -37,7 +37,8 @@ export function SelectSpot() {
     Axios.post('http://127.0.0.1:5000/genre_options').then((res) => {
       console.log(res.data);
       const values = Object.values(res.data);
-      setGenres(values);
+      const newValues = [{value: 0, label: "おまかせ"}, ...values];
+      setGenres(newValues);
     });
   }, []);
 
@@ -51,13 +52,18 @@ export function SelectSpot() {
           selectedValue={selectedPurpose}
           onChange={(value) => {
             setSelectedPurpose(value);
-            console.log(selectedPurpose)
           }}
         />
       </div>
       <div>
         genre: 
-        <Select options={genres} />
+        <Select 
+          options={genres} 
+          selectedValue={selectedGenre}
+          onChange={(value) => {
+            setSelectedGenre(value);
+          }}
+        />
       </div>
       <div className="px-8">
         <div className="text-center">
