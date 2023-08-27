@@ -6,7 +6,7 @@ import './../App.css';
 
 export function SelectSpot() {
   const location = useLocation();
-  const { area_id } = location.state;
+  const { timezone_id, area_id } = location.state;
 
   const [spots, setSpots] = useState([]);
   const [displayedSpots, setDisplayedSpots] = useState([]);
@@ -17,7 +17,8 @@ export function SelectSpot() {
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/spot_options', {
-      division_id: area_id
+      division_id: area_id,
+      timezone_id: timezone_id
     }).then((res) => {
       console.log(res.data);
       const values = Object.values(res.data);
@@ -69,34 +70,47 @@ export function SelectSpot() {
 
 	return(
 		<>
-    {selectedPurpose.label}
-    {selectedGenre.label}
-      <div>
-        mokuteki: 
-        <Select 
-          options={purposes} 
-          selectedValue={selectedPurpose}
-          onChange={(value) => {
-            value && setSelectedPurpose(value);
-          }}
-        />
+      <div className="w-screen flex px-10 py-10">
+        <Link to="/timezone" state={{ area_id: area_id }}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </Link>
+
+        <div className="flex-auto">
+          <div className="flex ml-20">
+          <div className="w-1/6 text-center text-3xl mr-6 mb-4"> 目的 </div>
+            <div className="w-2/3">
+              <Select 
+                options={purposes} 
+                selectedValue={selectedPurpose}
+                onChange={(value) => {
+                  value && setSelectedPurpose(value);
+                }}
+              />
+            </div> 
+          </div>
+          <div className="flex ml-20">
+            <div className="w-1/6 text-center text-3xl mr-6"> ジャンル </div>
+            <div className="w-2/3">
+              <Select 
+                options={genres} 
+                selectedValue={selectedGenre}
+                onChange={(value) => {
+                  setSelectedGenre(value);
+                }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        genre: 
-        <Select 
-          options={genres} 
-          selectedValue={selectedGenre}
-          onChange={(value) => {
-            setSelectedGenre(value);
-          }}
-        />
-      </div>
+
       <div className="px-8">
-        <div className="text-center">
+        <div className="items-center">
           {displayedSpots.map((spot) => {
             return(
               <Link to="/detail" state={{ spot_id: spot.id, spot_name: spot.spot }}>
-                <div className="max-w-sm rounded overflow-hidden shadow-lg mt-2 mx-2">
+                <div className="max-w-xl rounded overflow-hidden shadow-lg mt-2 mx-auto my-10">
                     <img className="w-full" src={spot.path} alt={spot.spot}/>
                     <div className="px-6 py-4">
                       <div className="font-bold text-xl mb-2">{spot.spot}</div>
@@ -105,11 +119,6 @@ export function SelectSpot() {
             </Link>
             )
           })}
-        </div>
-        <div className="mt-10">
-          <Link className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" to="/area">
-            一つ前に戻る
-          </Link>
         </div>
       </div>
 		</>

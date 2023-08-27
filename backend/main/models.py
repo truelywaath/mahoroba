@@ -115,3 +115,24 @@ class Genre(db.Model):
     def __init__(self, genre):
         self.genre = genre
 
+# 時間帯テーブル
+class Timezone(db.Model):
+    __tablename__ = 'timezone'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    timezone = db.Column(db.String(64))
+
+    def __init__(self, timezone):
+        self.timezone = timezone
+
+# スポット-時間帯
+class RSpotTimezone(db.Model):
+    __tablename__ = 'spot_timezone'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    spot_id = db.Column(db.Integer)
+    timezone_id = db.Column(db.Integer)
+
+    def __init__(self, spot_id, timezone_id):
+        self.spot_id = spot_id
+        self.timezone_id = timezone_id
