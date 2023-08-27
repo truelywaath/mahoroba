@@ -111,7 +111,7 @@ export function SelectSpot() {
         <div className="items-center">
           {displayedSpots.map((spot) => {
             return(
-              <Link to="/detail" state={{ spot_id: spot.id, spot_name: spot.spot }}>
+              <Link to="/detail" state={{ spot_id: spot.id, spot_name: spot.spot, timezone_id:timezone_id, area_id:area_id }}>
                 <div className="max-w-xl rounded overflow-hidden shadow-lg mt-2 mx-auto my-10">
                     <img className="w-full" src={spot.path} alt={spot.spot}/>
                     <div className="px-6 py-4">

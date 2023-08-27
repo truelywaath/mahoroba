@@ -56,15 +56,6 @@ export function SelectTimezone() {
             </div>
           </ul>
         </div>
-        
-        <div className="mt-10">
-          <Link 
-            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
-            to="/area"
-          >
-            一つ前に戻る
-          </Link>
-        </div>
       </div>
     </>
   ); 
