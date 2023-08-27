@@ -95,12 +95,14 @@ export function SelectSpot() {
         <div className="text-center">
           {displayedSpots.map((spot) => {
             return(
-              <div className="max-w-sm rounded overflow-hidden shadow-lg mt-2 mx-2">
-                <img className="w-full" src={spot.path} alt={spot.spot}/>
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">{spot.spot}</div>
-                </div>
-              </div>
+              <Link to="/detail" state={{ spot_id: spot.id, spot_name: spot.spot }}>
+                <div className="max-w-sm rounded overflow-hidden shadow-lg mt-2 mx-2">
+                    <img className="w-full" src={spot.path} alt={spot.spot}/>
+                    <div className="px-6 py-4">
+                      <div className="font-bold text-xl mb-2">{spot.spot}</div>
+                    </div>
+                  </div>
+            </Link>
             )
           })}
         </div>

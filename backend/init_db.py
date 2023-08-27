@@ -100,7 +100,6 @@ for index, row in df.iterrows():
         related_spot_name = row['関連スポット名称'],
         related_image_path = row['関連スポット画像パス']
     )
-    print(type(related_spot_record.spot_id))
     db.session.add(related_spot_record)
 
 # 目的
