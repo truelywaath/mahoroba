@@ -1,5 +1,5 @@
 from flask import request, jsonify, make_response
-from main.models import Division, Spot, Purpose, Genre, RSpotPurpose
+from main.models import Division, Spot, Purpose, Genre, RSpotPurpose, RSpot_Path, SpotDetail, RelatedSpot
 from main import app, db 
 
 @app.route("/", methods=['GET'])
@@ -82,3 +82,48 @@ def get_genre_options():
         res.append({"value": genre.id, "label": genre.genre})
 
     return make_response(jsonify(res))
+
+
+@app.route('/spot_images', methods=['GET', 'POST'])
+def get_spot_images():
+    data = request.get_json()
+    spot_id = data['spot_id']
+    rspot_paths = RSpot_Path.query.filter(RSpot_Path.spot_id==spot_id).all()
+
+    res = []
+    for rspot_path in rspot_paths:
+        res.append({"path": rspot_path.path})
+    print("OK!")
+
+    return make_response(jsonify(res))
+
+
+@app.route('/spot_info', methods=['GET', 'POST'])
+def get_spot_info():
+    data = request.get_json()
+    spot_id = data['spot_id']
+    spot_detail = SpotDetail.query.filter(SpotDetail.spot_id==spot_id).first()
+
+    res = [{"latitude":spot_detail.latitude, "longitude":spot_detail.longitude, "description":spot_detail.description}]
+
+    return make_response(jsonify(res))
+
+
+
+@app.route('/related_spots', methods=['GET', 'POST'])
+def get_related_spots():
+    data = request.get_json()
+    spot_id = data['spot_id']
+    related_spots = RelatedSpot.query.filter(RelatedSpot.spot_id==spot_id).all()
+
+    res = []
+    for related_spot in related_spots:
+        res.append({
+            "related_spot_id": related_spot.related_spot_id,
+            "related_spot_name":related_spot.related_spot_name,
+            "related_image_path":related_spot.related_image_path
+        })
+    print("OK!")
+
+    return make_response(jsonify(res))
+
