@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Select from 'react-select'
 import { Link, useLocation } from 'react-router-dom';
+import { Header } from '../Header';
 import './../App.css';
 
 export function SelectSpot() {
@@ -70,6 +71,7 @@ export function SelectSpot() {
 
 	return(
 		<>
+      < Header />
       <div className="w-screen flex px-10 py-10">
         <Link to="/timezone" state={{ area_id: area_id }}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">

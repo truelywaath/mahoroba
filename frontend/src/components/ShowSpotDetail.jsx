@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Select from 'react-select';
 import Slider from "react-slick";
 import { Link, useLocation } from 'react-router-dom';
+import { Header } from '../Header';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './../App.css';
