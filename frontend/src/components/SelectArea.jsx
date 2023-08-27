@@ -15,10 +15,16 @@ export function SelectArea() {
 
   return(
     <>
-      <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 rounded-bl-full rounded-br-full mb-10">
-        エリアは？
+      <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 mb-10">
+        エリアを選択してください
       </div>
+    
       <div className="px-8">
+        <Link to="/">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </Link>
         <div className="text-center">
           <ul>
             {areas.map((area) => {
@@ -26,7 +32,7 @@ export function SelectArea() {
                 <div className="list-row">
                   <li className="my-4" key={area.id}>
                     <Link to="/timezone" state={{ area_id: area.id }}>
-                      <button className="w-2/3 text-5xl text-rose-400 bg-rose-200 hover:bg-rose-300 py-4 my-2 px-4 border border-gray-400 rounded shadow rounded-full" component={Link} to="/">
+                      <button className="w-2/3 text-5xl text-white bg-rose-200 hover:text-rose-600 hover:bg-rose-300 py-4 my-2 px-4 border border-gray-400 rounded shadow rounded-full" component={Link} to="/">
                         { area.division }
                       </button>
                     </Link>
@@ -37,19 +43,13 @@ export function SelectArea() {
             <div className="list-row">
               <li className="my-4" key="-1">
                 <Link to="/timezone" state={{ area_id: -1 }}>
-                  <button className="w-2/3 text-5xl text-rose-400 bg-rose-200 hover:bg-gray-300 py-4 my-2 px-4 border border-gray-400 rounded shadow rounded-full" component={Link} to="/">
+                  <button className="w-2/3 text-5xl text-white bg-rose-200 hover:text-rose-600 hover:bg-gray-300 py-4 my-2 px-4 border border-gray-400 rounded shadow rounded-full" component={Link} to="/">
                    おまかせ
                   </button>
                 </Link>
               </li>
             </div>
           </ul>
-        </div>
-        
-        <div className="mt-10">
-          <Link className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" to="/">
-            一つ前に戻る
-          </Link>
         </div>
       </div>
     </>
