@@ -20,6 +20,14 @@ export function ShowSpotDetail() {
         speed: 500,
       };
 
+    const related_slider_settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        speed: 500,
+      };
+
+
     const [images, setImages] = useState([]);
     const [detail, setDetail] = useState([]);
     const [related_spots, setRelatedSpots] = useState([]);
@@ -62,47 +70,57 @@ useEffect(() => {
 	return(
 		<>
 
-    <Slider {...slider_settings}>
-      {images.map((img)=>{
-        return (
-        <div>
-            {/* <h1>{img}</h1> */}
-          <img src={img.path} />
-        </div>
-        )
-      })}
-    </Slider>
+    <Link to="/">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    </Link>
+
+
+    <div class="m-8">
+        <Slider {...slider_settings}>
+        {images.map((img)=>{
+            return (
+            <div>
+            <img src={img.path} class="slide-img" />
+            </div>
+            )
+        })}
+        </Slider>
+    </div>
 
 
 
 {detail.map((info) => {
             return(
 <div class="flex flex-row">
-  <div class="bg-green-100 px-2">
-    <h1>{spot_name}</h1>
-    <p>{info.description}</p>
+  <div class="px-2 m-8 flex-1">
+    <p class="text-5xl font-bold m-3">{spot_name}</p>
+    <p class="text-2xl font-medium mt-10 mr-3 ml-10 mb-3">{info.description}</p>
   </div>
-  <div class="bg-green-100 px-2 ml-1">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3241.8493436052695!2d139.7478333!3d35.6560833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzXCsDM5JzIxLjkiTiAxMznCsDQ0JzUyLjIiRQ!5e0!3m2!1sja!2sjp!4v1693087584448!5m2!1sja!2sjp" width="600" height="450"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  <div class="px-2 ml-1 flex-1">
+  <iframe width="400rem" height="300rem"  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3241.8493436052695!2d139.7478333!3d35.6560833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzXCsDM5JzIxLjkiTiAxMznCsDQ0JzUyLjIiRQ!5e0!3m2!1sja!2sjp!4v1693087584448!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
   </iframe>
   </div>
 </div>
             )
           })}
 
-<br></br>
-
-<h1>関連スポット</h1>
-<div class="flex flex-row">
-{related_spots.map((related_spot) => {
-            return(
-  <div class="bg-green-100 px-2">
-    <p>{related_spot.related_image_path}</p>
-  </div>
-            )
-          })}
+<div class="mt-10 border-b-stone-950 border-2">
+    <p class="text-5xl font-bold mb-2">関連スポット</p>
 </div>
-{console.log(typeof(related_spot))}
+
+<div class="m-8">
+        <Slider {...related_slider_settings}>
+        {related_spots.map((related_spot) => {
+                return(
+                    <div>
+                <img src={related_spot.related_image_path} class="slide-related-img" />
+                </div>
+                )
+            })}
+        </Slider>
+    </div>
 
 
       <div className="px-8">
