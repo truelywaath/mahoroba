@@ -19,10 +19,15 @@ export function SelectTimezone() {
 
   return(
     <>
-      <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 rounded-bl-full rounded-br-full mb-10">
-        時間帯は？
+      <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 mb-10">
+        時間帯を選択してください
       </div>
       <div className="px-8">
+        <Link to="/area">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </Link>
         <div className="text-center">
           <ul>
             {timezones.map((timezone) => {

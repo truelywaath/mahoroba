@@ -8,7 +8,7 @@ export function Header() {
       <div className="flex justify-around items-center p-12 bg-rose-50">
         <h1 className="text-7xl text-white font-bold underline">
           <Link to="/">
-            Hello Mahoroba!
+            エドまちライブラリ
           </Link>
         </h1>
       </div>
