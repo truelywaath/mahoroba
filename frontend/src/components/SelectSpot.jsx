@@ -6,7 +6,7 @@ import './../App.css';
 
 export function SelectSpot() {
   const location = useLocation();
-  const { area_id } = location.state;
+  const { timezone_id, area_id } = location.state;
 
   const [spots, setSpots] = useState([]);
   const [displayedSpots, setDisplayedSpots] = useState([]);
@@ -17,7 +17,8 @@ export function SelectSpot() {
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/spot_options', {
-      division_id: area_id
+      division_id: area_id,
+      timezone_id: timezone_id
     }).then((res) => {
       console.log(res.data);
       const values = Object.values(res.data);
@@ -69,6 +70,8 @@ export function SelectSpot() {
 
 	return(
 		<>
+    {timezone_id}
+    {area_id}
     {selectedPurpose.label}
     {selectedGenre.label}
       <div>
@@ -107,7 +110,11 @@ export function SelectSpot() {
           })}
         </div>
         <div className="mt-10">
-          <Link className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" to="/area">
+          <Link 
+            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
+            to="/timezone"
+            state={{ area_id: area_id }}
+          >
             一つ前に戻る
           </Link>
         </div>

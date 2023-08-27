@@ -1,5 +1,6 @@
 import pandas as pd
-from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, RSpot_Path, Purpose, Genre, RSpotPurpose
+from main.models import Area, Division, Spot, RelatedSpot, SpotDetail, Purpose, Genre, Timezone
+from main.models import RSpot_Path, RSpotPurpose, RSpotTimezone
 from main import db
 
 db.drop_all()
@@ -140,5 +141,29 @@ for index, row in df.iterrows():
     )
     db.session.add(spot_purpose_record)
 
+# 時間帯
+timezone_dtypes = {
+    '時間帯': str
+}
+
+df = pd.read_csv("./csv/timezone.csv", dtype=timezone_dtypes)
+for index, row in df.iterrows():
+    timezone_record = Timezone(
+        timezone = row['時間帯']
+    )
+    db.session.add(timezone_record)
+
+spot_timezone_dtypes = {
+    'スポットID': int,
+    '時間帯ID': int
+}
+
+df = pd.read_csv("./csv/spot_timezone.csv", dtype=spot_timezone_dtypes)
+for index, row in df.iterrows():
+    spot_timezone_record = RSpotTimezone(
+        spot_id = int(row['スポットID']),
+        timezone_id = int(row['時間帯ID'])
+    )
+    db.session.add(spot_timezone_record)
 
 db.session.commit()
