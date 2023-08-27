@@ -70,7 +70,7 @@ export function SelectSpot() {
 
 	return(
 		<>
-      <div className="w-screen flex px-8 py-10">
+      <div className="w-screen flex px-10 py-10">
         <Link to="/timezone" state={{ area_id: area_id }}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
             <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -78,8 +78,8 @@ export function SelectSpot() {
         </Link>
 
         <div className="flex-auto">
-          <div className="flex pl-32">
-          <div className="w-1/6 text-center text-3xl"> 目的 </div>
+          <div className="flex ml-20">
+          <div className="w-1/6 text-center text-3xl mr-6 mb-4"> 目的 </div>
             <div className="w-2/3">
               <Select 
                 options={purposes} 
@@ -90,8 +90,8 @@ export function SelectSpot() {
               />
             </div> 
           </div>
-          <div className="flex pl-32">
-            <div className="w-1/6 text-center text-3xl"> ジャンル </div>
+          <div className="flex ml-20">
+            <div className="w-1/6 text-center text-3xl mr-6"> ジャンル </div>
             <div className="w-2/3">
               <Select 
                 options={genres} 
