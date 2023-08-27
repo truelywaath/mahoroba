@@ -1,5 +1,5 @@
 from flask import request, jsonify, make_response
-from main.models import Division, Spot, Purpose, Genre, RSpotPurpose, RSpot_Path, SpotDetail, RelatedSpot
+from main.models import Division, Spot, Purpose, Genre, RSpotPurpose, RSpot_Path, SpotDetail, RelatedSpot, Timezone, RSpotTimezone
 from main import app, db 
 
 @app.route("/", methods=['GET'])
@@ -31,6 +31,7 @@ def get_area_options():
 def get_spot_options():
     data = request.get_json()
     division_id = data['division_id']
+    timezone_id = data['timezone_id']
 
     res = []
     if division_id == -1:
@@ -39,22 +40,34 @@ def get_spot_options():
         spots = Spot.query.filter(Spot.division_id==division_id).all()
 
     r_spot_purposes = RSpotPurpose.query.all()
-    mp = {}
-    for r_spot_purpose in r_spot_purposes:
-        if r_spot_purpose.spot_id not in mp:
-            mp[r_spot_purpose.spot_id] = []
-        mp[r_spot_purpose.spot_id].append(r_spot_purpose.purpose_id)
 
+    purposes_mp = {}
+    for r_spot_purpose in r_spot_purposes:
+        if r_spot_purpose.spot_id not in purposes_mp:
+            purposes_mp[r_spot_purpose.spot_id] = []
+        purposes_mp[r_spot_purpose.spot_id].append(r_spot_purpose.purpose_id)
+
+    r_spot_timezones = RSpotTimezone.query.all()
+    timezones_mp = {}
+    for r_spot_timezone in r_spot_timezones:
+        if r_spot_timezone.timezone_id not in timezones_mp:
+            timezones_mp[r_spot_timezone.timezone_id] = []
+
+        timezones_mp[r_spot_timezone.timezone_id].append(r_spot_timezone.spot_id)
 
     for spot in spots:
-        if spot.id not in mp:
-            mp[spot.id] = []
+        if timezone_id != -1:
+            if spot.id not in timezones_mp[timezone_id]:
+                continue
+
+        if spot.id not in purposes_mp:
+            purposes_mp[spot.id] = []
 
         res.append(
             {
                 "id": spot.id,
                 "spot": spot.spot,
-                "purpose_ids": mp[spot.id],
+                "purpose_ids": purposes_mp[spot.id],
                 "genre_id": spot.genre_id,
                 "path": spot.path
             }
@@ -93,7 +106,6 @@ def get_spot_images():
     res = []
     for rspot_path in rspot_paths:
         res.append({"path": rspot_path.path})
-    print("OK!")
 
     return make_response(jsonify(res))
 
@@ -123,7 +135,15 @@ def get_related_spots():
             "related_spot_name":related_spot.related_spot_name,
             "related_image_path":related_spot.related_image_path
         })
-    print("OK!")
 
     return make_response(jsonify(res))
 
+@app.route('/timezone_options', methods=['GET', 'POST'])
+def get_timezone_options():
+    timezones = Timezone.query.all()
+
+    res = []
+    for timezone in timezones:
+        res.append({ "id": timezone.id, "timezone": timezone.timezone })
+
+    return make_response(jsonify(res))
