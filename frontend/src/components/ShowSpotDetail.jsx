@@ -13,7 +13,10 @@ export function ShowSpotDetail() {
     const location = useLocation();
     const spot_id = location.state.spot_id;
     const spot_name = location.state.spot_name;
-    
+    const timezone_id = location.state.timezone_id;
+    const area_id = location.state.area_id;
+
+
     const slider_settings = {
         dots: true,
         infinite: true,
@@ -70,14 +73,17 @@ useEffect(() => {
 	return(
 		<>
 
-    <Link to="/">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-    </Link>
+<div className="w-screen flex px-10 py-10">
+        <Link to="/spot" state={{ timezone_id: timezone_id, area_id: area_id }}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </Link>
+</div>
 
 
-    <div class="m-8">
+
+    <div class="ml-20 mr-20 mb-20">
         <Slider {...slider_settings}>
         {images.map((img)=>{
             return (
@@ -96,7 +102,7 @@ useEffect(() => {
 <div class="flex flex-row">
   <div class="px-2 m-8 flex-1">
     <p class="text-5xl font-bold m-3">{spot_name}</p>
-    <p class="text-2xl font-medium mt-10 mr-3 ml-10 mb-3">{info.description}</p>
+    <p class="text-2xl font-medium mt-10 mr-3 ml-3 mb-3">{info.description}</p>
   </div>
   <div class="px-2 ml-1 flex-1">
   <iframe width="400rem" height="300rem"  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3241.8493436052695!2d139.7478333!3d35.6560833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzXCsDM5JzIxLjkiTiAxMznCsDQ0JzUyLjIiRQ!5e0!3m2!1sja!2sjp!4v1693087584448!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -106,11 +112,11 @@ useEffect(() => {
             )
           })}
 
-<div class="mt-10 border-b-stone-950 border-2">
-    <p class="text-5xl font-bold mb-2">関連スポット</p>
+<div class="mt-10 ml-12 mr-12 border-b-stone-950 border-2">
+    <p class="text-3xl font-bold mb-2">関連スポット</p>
 </div>
 
-<div class="m-8">
+<div class="m-12">
         <Slider {...related_slider_settings}>
         {related_spots.map((related_spot) => {
                 return(
@@ -121,17 +127,6 @@ useEffect(() => {
             })}
         </Slider>
     </div>
-
-
-      <div className="px-8">
-        <div className="text-center">
-        </div>
-        <div className="mt-10">
-          <Link className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" to="/area">
-            一つ前に戻る
-          </Link>
-        </div>
-      </div>
 
 		</>
 	);
