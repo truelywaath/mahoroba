@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Header } from '../Header';
 import './../App.css';
 
 export function SelectArea() {
@@ -15,6 +16,7 @@ export function SelectArea() {
 
   return(
     <>
+      < Header />
       <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 mb-10">
         エリアを選択してください
       </div>

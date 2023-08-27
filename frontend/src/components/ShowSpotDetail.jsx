@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Select from 'react-select';
 import Slider from "react-slick";
 import { Link, useLocation } from 'react-router-dom';
+import { Header } from '../Header';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './../App.css';
@@ -69,7 +70,7 @@ useEffect(() => {
 
 	return(
 		<>
-
+    < Header />
     <Link to="/">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
