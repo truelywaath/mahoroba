@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
+import { Header } from '../Header';
 import './../App.css';
 
 export function SelectTimezone() {
@@ -19,6 +20,7 @@ export function SelectTimezone() {
 
   return(
     <>
+      <Header /> 
       <div className="bg-rose-50 w-full text-center text-white text-7xl py-12 mb-10">
         時間帯を選択してください
       </div>
