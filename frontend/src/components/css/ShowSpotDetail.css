@@ -1,5 +1,13 @@
-.img {
+.slide-img {
     width: 100%;
     height: 50vw;
     object-fit: cover;
 }
+
+
+.slide-related-img {
+    width: 80%;
+    height: 20vw;
+    object-fit: cover;
+}
+
