@@ -80,9 +80,9 @@ export function SelectSpot() {
         </Link>
 
         <div className="flex-auto">
-          <div className="flex ml-20">
-          <div className="w-1/6 text-center text-3xl mr-6 mb-4"> 目的 </div>
-            <div className="w-2/3">
+          <div className="flex ml-10">
+          <div className="w-1/4 text-center text-3xl mr-6 mb-4"> 目的 </div>
+            <div className="w-3/5 text-3xl font-bold">
               <Select 
                 options={purposes} 
                 selectedValue={selectedPurpose}
@@ -92,9 +92,9 @@ export function SelectSpot() {
               />
             </div> 
           </div>
-          <div className="flex ml-20">
-            <div className="w-1/6 text-center text-3xl mr-6"> ジャンル </div>
-            <div className="w-2/3">
+          <div className="flex ml-10">
+            <div className="w-1/4 text-center text-3xl mr-6"> ジャンル </div>
+            <div className="w-3/5 text-3xl font-bold">
               <Select 
                 options={genres} 
                 selectedValue={selectedGenre}
@@ -112,7 +112,7 @@ export function SelectSpot() {
           {displayedSpots.map((spot) => {
             return(
               <Link to="/detail" state={{ spot_id: spot.id, spot_name: spot.spot, timezone_id:timezone_id, area_id:area_id }}>
-                <div className="max-w-xl rounded overflow-hidden shadow-lg mt-2 mx-auto my-10">
+                <div className="max-w-2xl rounded overflow-hidden shadow-lg mt-2 mx-auto my-10">
                     <img className="w-full" src={spot.path} alt={spot.spot}/>
                     <div className="px-6 py-4">
                       <div className="font-bold text-xl mb-2">{spot.spot}</div>
