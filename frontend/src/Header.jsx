@@ -7,7 +7,7 @@ export function Header() {
     <>
 
 
-<div className="flex items-center bg-rose-50 p-5">
+<div className="flex items-center bg-rose-50 p-6">
   <div class="w-28 h-28 bg-rose-800 rounded-full flex items-center justify-around">
     <Link to="/">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-24 h-24 text-rose-50">
