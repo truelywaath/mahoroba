@@ -113,11 +113,11 @@ useEffect(() => {
             )
           })}
 
-<div class="mt-10 ml-12 mr-12 border-b-stone-950 border-2">
+<div class="mt-20 ml-12 mr-12 pb-1 border-b-stone-950 border-2">
     <p class="text-3xl font-bold mb-2">関連スポット</p>
 </div>
 
-<div class="m-12">
+<div class="mx-12 mt-16 mb-[68px]">
         <Slider {...related_slider_settings}>
         {related_spots.map((related_spot) => {
                 return(
