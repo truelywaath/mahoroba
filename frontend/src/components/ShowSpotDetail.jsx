@@ -74,22 +74,22 @@ useEffect(() => {
 	return(
 		<>
 < Header />
-<div className="w-screen flex px-10 py-10">
+<div className="mx-12 mt-6">
         <Link to="/spot" state={{ timezone_id: timezone_id, area_id: area_id }}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20 h-20 text-rose-300">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-[75px] h-[75px]">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+        </svg>
         </Link>
 </div>
 
 
 
-    <div class="ml-20 mr-20 mb-20">
+    <div class="mt-[45px] ml-20 mr-20 mb-20 max-w-[840px] rounded overflow-hidden shadow-lg">
         <Slider {...slider_settings}>
         {images.map((img)=>{
             return (
             <div>
-            <img src={img.path} class="slide-img" />
+            <img src={img.path} class="w-full slide-img" />
             </div>
             )
         })}
@@ -100,8 +100,8 @@ useEffect(() => {
 
 {detail.map((info) => {
             return(
-<div class="flex flex-row">
-  <div class="px-2 m-8 flex-1">
+<div class="flex mt-[72px]">
+  <div class="px-2 mx-8 flex-1">
     <p class="text-5xl font-bold m-3">{spot_name}</p>
     <p class="text-2xl font-medium mt-10 mr-3 ml-3 mb-3">{info.description}</p>
   </div>
@@ -113,11 +113,11 @@ useEffect(() => {
             )
           })}
 
-<div class="mt-10 ml-12 mr-12 border-b-stone-950 border-2">
+<div class="mt-20 ml-12 mr-12 pb-1 border-b-stone-950 border-2">
     <p class="text-3xl font-bold mb-2">関連スポット</p>
 </div>
 
-<div class="m-12">
+<div class="mx-12 mt-16 mb-[68px]">
         <Slider {...related_slider_settings}>
         {related_spots.map((related_spot) => {
                 return(
