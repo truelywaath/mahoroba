@@ -12,12 +12,11 @@ export function TopPage() {
   return(
     <>
     <div style={ style }>
-      <div className="bg-black bg-opacity-10">
       <div className="text-center">
-        <div className="pt-[614px]"></div>
+        <div className="pt-[670px]"></div>
         <div className="py-[40px]">
-          <div className="py-32 bg-rose-0/30">
-            <p className="text-8xl font-extrabold text-white"> エドまちライブラリ </p>
+          <div className="py-20 bg-rose-0/30">
+            <p className="mt-[40px] text-8xl font-extrabold text-white"> エドまちライブラリ </p>
             <p className="text-[40px] font-semibold text-white "> 画像からあなたが本当に行きたい場所へ </p>
           </div>
         </div>
@@ -36,7 +35,6 @@ export function TopPage() {
           </div>
         </div>
       </div>
-    </div>
     </>
     );
 }
