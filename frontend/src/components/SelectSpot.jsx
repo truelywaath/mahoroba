@@ -13,8 +13,8 @@ export function SelectSpot() {
   const [displayedSpots, setDisplayedSpots] = useState([]);
   const [purposes, setPurposes] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [selectedPurpose, setSelectedPurpose] = useState({ label: '指定なし', value: 0 });
-  const [selectedGenre, setSelectedGenre] = useState({ label: '指定なし', value: 0 });
+  const [selectedPurpose, setSelectedPurpose] = useState({ label: 'おまかせ', value: 0 });
+  const [selectedGenre, setSelectedGenre] = useState({ label: 'おまかせ', value: 0 });
 
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/spot_options', {
@@ -53,7 +53,7 @@ export function SelectSpot() {
   useEffect(() => {
     Axios.post('http://127.0.0.1:5000/purpose_options').then((res) => {
       const values = Object.values(res.data);
-      const newValues = [{ value: 0, label: "指定なし" }, ...values];
+      const newValues = [{ value: 0, label: "おまかせ" }, ...values];
       console.log(newValues);
       setPurposes(newValues);
     });
@@ -63,7 +63,7 @@ export function SelectSpot() {
     Axios.post('http://127.0.0.1:5000/genre_options').then((res) => {
       console.log(res.data);
       const values = Object.values(res.data);
-      const newValues = [{ value: 0, label: "指定なし" }, ...values];
+      const newValues = [{ value: 0, label: "おまかせ" }, ...values];
       setGenres(newValues);
     });
   }, []);
@@ -89,6 +89,7 @@ export function SelectSpot() {
               <div className="flex-none w-3/5 text-3xl font-medium">
                 <Select
                   options={genres}
+                  placeholder="おまかせ"
                   selectedValue={selectedGenre}
                   onChange={(value) => {
                     setSelectedGenre(value);
@@ -103,6 +104,7 @@ export function SelectSpot() {
               <div className="flex-none w-3/5 text-3xl font-medium">
                 <Select
                   options={purposes}
+                  placeholder="おまかせ"
                   selectedValue={selectedPurpose}
                   onChange={(value) => {
                     value && setSelectedPurpose(value);
@@ -119,9 +121,9 @@ export function SelectSpot() {
           {displayedSpots.map((spot) => {
             return (
               <Link to="/detail" state={{ spot_id: spot.id, spot_name: spot.spot, timezone_id: timezone_id, area_id: area_id }}>
-                <div className="max-w-[603px] rounded overflow-hidden shadow-lg mx-auto mb-12">
+                <div className="max-w-[750px] rounded overflow-hidden shadow-lg mx-auto mb-12">
                   <img className="w-full" src={spot.path} alt={spot.spot} />
-                  <div className="py-8 bg-rose-800">
+                  <div className="py-4 bg-rose-800">
                     <div className="text-center font-bold text-3xl">{spot.spot}</div>
                   </div>
                 </div>
