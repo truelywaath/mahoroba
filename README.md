@@ -1,3 +1,8 @@
+# なにこれ
+- 東京都オープンデータハッカソン提出作品
+- 発表内容は以下   
+https://www.youtube.com/watch?v=TiiDAus5tUk&t=7197s
+
 # 開発環境
 - python
   - v3.10.4
